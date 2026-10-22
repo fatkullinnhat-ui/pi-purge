@@ -1,0 +1,13 @@
+# 运行时状态与机器本地数据（不入库）
+paseo-plugin/node_modules/
+backup/
+drills/
+state.json
+state.json.reverted
+state.json.*
+*.orig
+
+# 临时调试脚本
+smoke.mts
+pipurge-debug.mjs
+probe-*.jsonl
