@@ -6,7 +6,7 @@ pi（`@earendil-works/pi-coding-agent`）指令权威性清洗 —— 由 dsh-pu
 
 | 件 | 路径 | 作用 |
 |---|---|---|
-| CLI 主工具 | `~/.pi/agent/pi-purge/pi-purge.mjs` | 18 项补丁状态机、备份、还原、守卫 |
+| CLI 主工具（双版本） | 仓库 `pi-purge.mjs`(Windows) / `pi-purge-linux.mjs`(Linux) → 均部署为 `~/.pi/agent/pi-purge/pi-purge.mjs` | 18 项补丁状态机、备份、还原、守卫 |
 | 默认内核 | `~/.pi/agent/pi-purge/default-prompt-inject.md` | 播种用的注入内核（用户可改 `prompt-inject.md`，运行时读取） |
 | 运行时扩展 | `~/.pi/agent/extensions/pi-purge/` | session_start 自愈重打、漂移时内核段兜底、`/purge` 命令 |
 | 启动器 shim | npm 全局 `pi.cmd` / `pi.ps1` / `pi` | 启动前 `--guard`：哈希漂移（pi update）自动重打 |
@@ -83,5 +83,6 @@ paseo plugin reload pi-purge     # 源码改动后
 paseo plugin disable pi-purge
 paseo plugin remove pi-purge
 ```
+
 
 
