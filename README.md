@@ -1,4 +1,4 @@
-# pi-purge v1.0.0
+﻿# pi-purge v1.0.0
 
 pi（`@earendil-works/pi-coding-agent`）指令权威性清洗 —— 由 dsh-purge 移植重做。
 
@@ -19,6 +19,15 @@ pi（`@earendil-works/pi-coding-agent`）指令权威性清洗 —— 由 dsh-pu
 - **代码/Code #3-#12** 输出上限家族：shell 围栏 2000 行/50KB→20000 行/500KB、truncate 原语同幅放宽、旧 shell 路径 100KB→1MB、TUI 回显同步
 - **工具/Tools #4-#8,#13-#15** bash/read/find/grep/ls 工具描述与新上限对齐（模型所见即所得）
 - **引擎级/Engine #17/#18** codemode 输出预算 10k token→200k token；MCP 工具结果夹子 20KB→500KB
+
+## 平台版本（双版本并存）
+
+| 平台 | 仓库文件 | 部署为 | shim 形态 |
+|---|---|---|---|
+| **Windows** | `pi-purge.mjs` | `~/.pi/agent/pi-purge/pi-purge.mjs` | npm 三件套（`%APPDATA%\npm\pi.cmd` / `pi.ps1` / `pi`）插行式 guard |
+| **Linux** | `pi-purge-linux.mjs` | `~/.pi/agent/pi-purge/pi-purge.mjs` | 启动器按 `command -v pi` 定位（如 `/usr/bin/pi`）；symlink 替换为 guard wrapper（exec 绝对路径真身），`--revert` 恢复原 symlink |
+
+两个版本补丁面、状态机、备份、guard 逻辑完全一致；Linux 版仅增加 `linuxShimPath/shimStateAt/linuxWrapShim/linuxUnwrapShim` 四个布局适配函数与 status/revert 的双形态识别，全部包在 `process.platform !== "win32"` 守卫内，Windows 上运行等同于原版。
 
 ## 用法
 
@@ -74,3 +83,5 @@ paseo plugin reload pi-purge     # 源码改动后
 paseo plugin disable pi-purge
 paseo plugin remove pi-purge
 ```
+
+
